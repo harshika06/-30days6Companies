@@ -1,0 +1,51 @@
+ class Solution {
+    public int evalRPN(String[] tokens) {
+       Stack<Long> st=new Stack<Long>();
+       if(tokens.length==0)
+       return 0;
+       for(String s:tokens)
+       {
+           if(s.equals("+"))
+           {
+             Long a=st.peek();
+             st.pop();
+             Long b=st.peek();
+             st.pop();
+             st.push(a+b);
+           }
+           else if(s.equals("-"))
+           {
+             Long a=st.peek();
+             st.pop();
+             Long b=st.peek();
+             st.pop();
+             st.push(b-a);
+           }
+           else if(s.equals("*"))
+           {
+             Long a=st.peek();
+             st.pop();
+             Long b=st.peek();
+             st.pop();
+             st.push(a*b);
+           }
+           else if(s.equals("/"))
+           {
+             Long a=st.peek();
+             st.pop();
+             Long b=st.peek();
+             st.pop();
+             st.push(b/a);
+           }
+           else
+           {
+               Long a=Long.parseLong(s);
+               st.push(a);
+           }
+       }
+       Long c=new Long(st.peek());
+       Integer v=c.intValue();
+       return v;
+        
+    }
+}
